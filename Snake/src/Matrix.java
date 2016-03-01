@@ -30,10 +30,12 @@ public class Matrix {
 		}
 		return matrix;
 	}
+	
 	public int getH()
 	{
 		return H;
 	}
+	
 	public int getB()
 	{
 		return B;
