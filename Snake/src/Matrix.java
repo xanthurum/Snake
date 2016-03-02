@@ -1,8 +1,8 @@
 
 public class Matrix {
 
-	int H, B;
-	String[][] matrix;
+	private int H, B;
+	private String[][] matrix;
 	
 	public Matrix(int breedte, int hoogte) 
 	{
@@ -18,7 +18,7 @@ public class Matrix {
 		int i =0, h = 0;
 		while(h < H)
 		{
-		matrix[i][h] = "o";
+		matrix[i][h] = " o ";
 		System.out.print(matrix[i][h]);
 		i++;
 			if(i == B)
