@@ -1,20 +1,19 @@
 
 public class Snake 
 {
-	private Matrix matrix;
-	private int B, H;
+	/*private Matrix matrix;
+	private Food list;
 	
-	public Snake(int breedte, int hoogte) 
+	public Snake() 
 	{
-		B = breedte;
-		H = hoogte;
-		matrix = new Matrix(breedte, hoogte);
-	}
+		//matrix = new Matrix();
+		list = new Food();
+	}*/
 
 
 	public static void main (String[]args)
 	{
-		Snake snake = new Snake(10,10);
+		Food list = new Food();
 	}
 }
 	
