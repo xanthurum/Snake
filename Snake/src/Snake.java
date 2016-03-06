@@ -13,7 +13,7 @@ public class Snake
 
 	public static void main (String[]args)
 	{
-		Food list = new Food();
+		Matrix snake = new Matrix();
 	}
 }
 	
