@@ -4,6 +4,8 @@ public class Matrix {
 	private Food list;
 	private String[][] matrix;
 	private Snake snake;
+	private int row, kolom;
+	private Node temp;
 	
 	public Matrix() 
 	{
@@ -11,7 +13,7 @@ public class Matrix {
 		list = new Food();
 		snake = new Snake();
 		fill();
-		SnaketoMatrix();
+		SnakeToMatrix();
 		print();
 	}
 	
@@ -27,7 +29,6 @@ public class Matrix {
 				if(  (h == 0) || (h == 9) || (i == 0) || (i == 9)) /**sides matrix*/
 					{
 						matrix[i][h] = " * ";
-						//System.out.print(matrix[i][h]);
 					}
 				else
 					{
@@ -48,12 +49,10 @@ public class Matrix {
 						if(b == 1) /**insert food*/
 							{
 								matrix[i][h] = " F ";
-								//System.out.print(matrix[i][h]);
 							}
 						else /**insert white space*/
 							{
 								matrix[i][h] = "   ";
-								//System.out.print(matrix[i][h]);
 							}
 					}
 				i++;
@@ -61,13 +60,12 @@ public class Matrix {
 				{
 					i = 0;
 					h++;
-					//System.out.println();
 				}
 			}
 		return matrix;
 	}
 
-		public void SnaketoMatrix()
+		public void SnakeToMatrix()
 		{
 			Node temp = snake.first;
 			
@@ -79,6 +77,12 @@ public class Matrix {
 		}
 		public void print()
 		{
+			SnakeToMatrix();
+			
+			for(int i = 0; i < 24;i++)
+			{
+			System.out.println();
+			}
 			for(int r = 0; r < 10; r++)
 			{
 				for(int k = 0; k < 10; k++)
@@ -87,6 +91,50 @@ public class Matrix {
 				}
 				System.out.println();
 			}
+		}
+		
+		public void GameOver()
+		{
+			print();
+			System.out.println("   GAME  OVER   ");
+		}
+		public void move()
+		{
+			while(temp.next != null)
+			{
+				int r = temp.row;
+				int k = temp.kolom;
+				temp.row = row;
+				temp.kolom = kolom;
+				temp = temp.next;
+				row = r;
+				kolom =k;
+			}
+		}
+		public void right()
+		{
+			Node temp = snake.first;
+			row = temp.row;
+			kolom = temp.kolom;
+			
+			if(matrix[row+1][kolom].equals(" F "))
+			{
+				snake.add(row+1,kolom);	
+			}
+			else
+			{
+				if(matrix[row+1][kolom].equals(" * "))
+				{
+					GameOver();
+				}
+				if(matrix[row+1][kolom].equals("   "))
+				{
+					snake.first.kolom++;
+					temp = temp.next;
+					move();
+				}
+			}
+			
 		}
 		
 }
