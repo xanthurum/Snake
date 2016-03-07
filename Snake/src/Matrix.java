@@ -7,46 +7,47 @@ public class Matrix {
 	public Matrix() 
 	{
 		matrix = new String[10][10];
-		//list = new Food();
+		list = new Food();
 		fill();
 	}
 	
 	public String[][] fill()
 	{
-		//Food list = new Food();
 		
 		int i =0, h = 0;
 			while(h < 10)
 			{
-				if(  (h == 0) || (h == 9) || (i == 0) || (i == 9))
-				{
-					matrix[i][h] = " * ";
-					System.out.print(matrix[i][h]);
-				}
+				if(  (h == 0) || (h == 9) || (i == 0) || (i == 9)) /**sides matrix*/
+					{
+						matrix[i][h] = " * ";
+						System.out.print(matrix[i][h]);
+					}
 				else
 					{
-					int a = Integer.parseInt(Integer.toString(h)+Integer.toString(i));
-					System.out.print(a);
-					int b = 0; 
+						/**configure cell number*/
+						int a = Integer.parseInt(Integer.toString(h)+Integer.toString(i)); 
+						//System.out.print(a);
+						int b = 0; 
 	
-					for(int j = 0; j < 10; j++)
-					{
-						/*int c = list.Get(j);
-						if(c == a)
-						{
-							b = 1;
-						}*/
-					}
-					if(b == 1)
-					{
-						matrix[i][h] = "F";
-						System.out.print(matrix[i][h]);
-					}
-					else
-					{
-						matrix[i][h] = "   ";
-						System.out.print(matrix[i][h]);
-					}
+						for(int j = 0; j < 10; j++)
+							{
+								/**compare cell number with food number*/
+								int c = list.Get(j);
+								if(c == a)
+								{
+								b = 1;
+								}
+							}
+						if(b == 1) /**insert food*/
+							{
+								matrix[i][h] = " F ";
+								System.out.print(matrix[i][h]);
+							}
+						else /**insert white space*/
+							{
+								matrix[i][h] = "   ";
+								System.out.print(matrix[i][h]);
+							}
 					}
 				i++;
 				if(i == 10)

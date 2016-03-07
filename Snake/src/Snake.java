@@ -1,20 +1,18 @@
+import java.util.LinkedList;
+import java.util.List;
 
 public class Snake 
 {
-	/*private Matrix matrix;
-	private Food list;
+	//private Node head;
+	private int size;
+	private LinkedList<Integer> end;
 	
 	public Snake() 
 	{
 		//matrix = new Matrix();
-		list = new Food();
-	}*/
-
-
-	public static void main (String[]args)
-	{
-		Matrix snake = new Matrix();
+		//list = new Food();
 	}
+
 }
 	
 

@@ -1,7 +1,6 @@
 import java.util.Random;
-//import static java.lang.Math.toIntExact;
 
-public class Food extends Matrix
+public class Food
 {
 	public int[] list;
 	
@@ -14,7 +13,7 @@ public class Food extends Matrix
 
 	public int[] food()
 	{
-		for(int i = 0; i < 10; i++)
+		for(int i = 0; i < 6; i++)
 		{
 			Random random = new Random();
 			int k = random.nextInt(100);
@@ -22,21 +21,18 @@ public class Food extends Matrix
 			int d1 = (k - d0)/10;
 			
 			if((d0 == 0)||(d0 == 9)||(d1 == 0)||(d1 == 9))
+				/**exclude numbers being side numbers*/
 			{
 				i--;
 			}
 			else
+				/**list the random numbers*/
 			{
 				list[i] = k;
-				System.out.println(list[i]);
+				//System.out.println(list[i]);
 			}
 		}
 		return list;
-	}
-	
-	public void test()
-	{
-		System.out.println("test");
 	}
 	
 	public int Get(int x)
