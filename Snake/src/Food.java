@@ -20,7 +20,8 @@ public class Food
 			int d0 = k % 10;
 			int d1 = (k - d0)/10;
 			
-			if((d0 == 0)||(d0 == 9)||(d1 == 0)||(d1 == 9))
+			if((d0 == 0)||(d0 == 9)||(d1 == 0)||(d1 == 9)||
+				(d1 == 1 && (d0 == 1||d0 == 2||d0 == 3)))
 				/**exclude numbers being side numbers*/
 			{
 				i--;
