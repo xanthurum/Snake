@@ -100,7 +100,7 @@ public class Matrix {
 		}
 		public void move()
 		{
-			while(temp.next != null)
+			while(temp != null)
 			{
 				int r = temp.row;
 				int k = temp.kolom;
@@ -111,30 +111,32 @@ public class Matrix {
 				kolom =k;
 			}
 		}
-		public void right()
+		public Matrix right(Matrix m)
 		{
+			
+			//matrix = m;
 			Node temp = snake.first;
 			row = temp.row;
 			kolom = temp.kolom;
 			
-			if(matrix[row+1][kolom].equals(" F "))
+			if(matrix[row][kolom+1].equals(" F "))
 			{
-				snake.add(row+1,kolom);	
+				snake.add(row,kolom+1);	
 			}
 			else
 			{
-				if(matrix[row+1][kolom].equals(" * "))
+				if(matrix[row][kolom+1].equals(" * "))
 				{
 					GameOver();
 				}
-				if(matrix[row+1][kolom].equals("   "))
+				if(matrix[row][kolom+1].equals("   "))
 				{
 					snake.first.kolom++;
 					temp = temp.next;
-					move();
+					//move();
 				}
 			}
-			
-		}
+			return matrix;
+		 }
 		
 }

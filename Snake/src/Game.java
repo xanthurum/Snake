@@ -1,5 +1,4 @@
 
-import java.awt.Panel;
 import java.awt.event.*;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
@@ -9,7 +8,7 @@ import javax.swing.JTextField;
 public class Game extends JFrame implements KeyListener
 {
 
-	private Matrix matrix;
+	public Matrix matrix;
 	private JTextField area;
 	private JPanel panel;
 	private JFrame frame;
@@ -53,7 +52,8 @@ public class Game extends JFrame implements KeyListener
 		{
 			if(e.getKeyCode() == KeyEvent.VK_RIGHT)
 			{
-				matrix.right();
+				//matrix.right(matrix);
+				System.out.println("right");
 			}
 			
 			if(e.getKeyCode() == KeyEvent.VK_DOWN)
