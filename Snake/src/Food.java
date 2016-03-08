@@ -2,42 +2,31 @@ import java.util.Random;
 
 public class Food
 {
-	public int[] list;
+	public int number, d0, d1;
 	
 	public Food()
 	{
-		list = new int[10];
 		food();
 	}
 
 
-	public int[] food()
+	public void food()
 	{
-		for(int i = 0; i < 6; i++)
-		{
 			Random random = new Random();
 			int k = random.nextInt(100);
-			int d0 = k % 10;
-			int d1 = (k - d0)/10;
+			d0 = k % 10;
+			d1 = (k - d0)/10;
 			
 			if((d0 == 0)||(d0 == 9)||(d1 == 0)||(d1 == 9)||
 				(d1 == 1 && (d0 == 1||d0 == 2||d0 == 3)))
 				/**exclude numbers being side numbers*/
 			{
-				i--;
+				food();
 			}
 			else
 				/**list the random numbers*/
 			{
-				list[i] = k;
-				//System.out.println(list[i]);
+				number = k;
 			}
-		}
-		return list;
-	}
-	
-	public int Get(int x)
-	{
-		return list[x];
 	}
 }

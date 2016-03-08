@@ -15,12 +15,12 @@ public class Game extends JFrame implements KeyListener
 	
 	public Game()
 	{
-		Matrix matrix = new Matrix();
+		matrix = new Matrix();
 		panel = new JPanel();
 		frame = new JFrame();
 		area = new JTextField(5);
 		setVisible(true);
-		setSize(50,100);
+		setSize(100,100);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		panel.add(area);
 		add(panel);
@@ -46,27 +46,24 @@ public class Game extends JFrame implements KeyListener
 	{
 		if	(e.getKeyCode() == KeyEvent.VK_UP)
 		{
-			System.out.println("up");
+			matrix.task(-1,0);
 		}
-		else 
-		{
-			if(e.getKeyCode() == KeyEvent.VK_RIGHT)
+		else if(e.getKeyCode() == KeyEvent.VK_RIGHT)
 			{
-				//matrix.right(matrix);
-				System.out.println("right");
+				matrix.task(0,1);
 			}
 			
-			if(e.getKeyCode() == KeyEvent.VK_DOWN)
+		else if(e.getKeyCode() == KeyEvent.VK_DOWN)
 			{
-				System.out.println("down");
+				matrix.task(1,0);
 			}
 		
-			if(e.getKeyCode() == KeyEvent.VK_LEFT)
+		else if(e.getKeyCode() == KeyEvent.VK_LEFT)
 			{
-				System.out.println("left");
+				matrix.task(0,-1);
 			}
 		}
-	}
+
 
 	@Override
 	public void keyReleased(KeyEvent e) {

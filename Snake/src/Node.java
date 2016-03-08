@@ -10,7 +10,7 @@ public class Node
 	{
 		row = r;
 		kolom = k;
-		model = "ooo";
+		model = " o ";
 	}
 	
 }

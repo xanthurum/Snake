@@ -1,7 +1,7 @@
 
 public class Matrix {
 
-	private Food list;
+	private Food food;
 	private String[][] matrix;
 	private Snake snake;
 	private int row, kolom;
@@ -10,7 +10,7 @@ public class Matrix {
 	public Matrix() 
 	{
 		matrix = new String[10][10];
-		list = new Food();
+		food = new Food();
 		snake = new Snake();
 		fill();
 		SnakeToMatrix();
@@ -22,6 +22,8 @@ public class Matrix {
 		snake.add(1,1);
 		snake.add(1,2);
 		snake.add(1,3);
+		
+		NewFood();
 		
 		int i =0, h = 0;
 			while(h < 10)
@@ -35,18 +37,8 @@ public class Matrix {
 						/**configure cell number*/
 						int a = Integer.parseInt(Integer.toString(h)+Integer.toString(i)); 
 						//System.out.print(a);
-						int b = 0; 
-	
-						for(int j = 0; j < 10; j++)
-							{
-								/**compare cell number with food number*/
-								int c = list.Get(j);
-								if(c == a)
-								{
-								b = 1;
-								}
-							}
-						if(b == 1) /**insert food*/
+						
+						if(a == food.number) /**insert food*/
 							{
 								matrix[i][h] = " F ";
 							}
@@ -65,9 +57,16 @@ public class Matrix {
 		return matrix;
 	}
 
+		public void NewFood()
+		{
+			while(TestSnake(food.d1,food.d0))
+			{
+			food = new Food();
+			}	
+		}
 		public void SnakeToMatrix()
 		{
-			Node temp = snake.first;
+			temp = snake.first;
 			
 			while(temp != null)
 			{
@@ -75,10 +74,20 @@ public class Matrix {
 			temp = temp.next;
 			}
 		}
+		
+		public void ClearSnake()
+		{
+			Node temp = snake.first;
+			
+			while(temp != null)
+			{
+			matrix[temp.row][temp.kolom] = "   ";
+			temp = temp.next;
+			}
+		}
+		
 		public void print()
 		{
-			SnakeToMatrix();
-			
 			for(int i = 0; i < 24;i++)
 			{
 			System.out.println();
@@ -93,10 +102,17 @@ public class Matrix {
 			}
 		}
 		
-		public void GameOver()
+		public Boolean GameOver(int x, int y)
 		{
-			print();
-			System.out.println("   GAME  OVER   ");
+			if(matrix[row+x][kolom+y].equals(" * ") ||
+					   matrix[row+x][kolom+y].equals(temp.model))
+			{
+				print();
+				System.out.println("   GAME  OVER   ");
+				return true;
+			}
+			else return false;
+				
 		}
 		public void move()
 		{
@@ -110,33 +126,64 @@ public class Matrix {
 				row = r;
 				kolom =k;
 			}
+			SnakeToMatrix();
 		}
-		public Matrix right(Matrix m)
+		public void task(int x, int y)
 		{
-			
-			//matrix = m;
-			Node temp = snake.first;
+			temp = snake.first;
 			row = temp.row;
 			kolom = temp.kolom;
-			
-			if(matrix[row][kolom+1].equals(" F "))
+			if(!GameOver(x,y))
 			{
-				snake.add(row,kolom+1);	
-			}
-			else
-			{
-				if(matrix[row][kolom+1].equals(" * "))
+				if(matrix[row+x][kolom+y].equals(" F "))
 				{
-					GameOver();
+					snake.add(row+x,kolom+y);	
+					SnakeToMatrix();
+					NewFood();
+					matrix[food.d1][food.d0] = " F ";
+					print();
 				}
-				if(matrix[row][kolom+1].equals("   "))
+				else
 				{
-					snake.first.kolom++;
+					if(matrix[row+x][kolom+y].equals("   "))
+					{
+						
+						if(x == 0 )
+						{
+							snake.first.kolom = snake.first.kolom +y;
+							temp = temp.next;
+							ClearSnake();
+							move();
+							print();
+						}
+						else if(y == 0)
+						{
+							snake.first.row = snake.first.row +x;
+							temp = temp.next;
+							ClearSnake();
+							move();
+							print();
+						}
+					}
+				}
+		   }
+		}
+		public boolean TestSnake(int row, int kolom)
+		{
+			Node temp = snake.first;
+			Boolean result = false;
+			while(temp != null)
+			{
+				if(temp.row == row && temp.kolom == kolom)
+				{
+					result = true;
+				}
+				else 
+				{
 					temp = temp.next;
-					//move();
+					result = false;
 				}
 			}
-			return matrix;
-		 }
-		
+			return result;
+		}
 }
