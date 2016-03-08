@@ -28,21 +28,20 @@ public class Matrix {
 		int i =0, h = 0;
 			while(h < 10)
 			{
-				if(  (h == 0) || (h == 9) || (i == 0) || (i == 9)) /**sides matrix*/
+				if(  (h == 0) || (h == 9) || (i == 0) || (i == 9)) /*sides matrix*/
 					{
 						matrix[i][h] = " * ";
 					}
 				else
 					{
-						/**configure cell number*/
+						/*configure cell number*/
 						int a = Integer.parseInt(Integer.toString(h)+Integer.toString(i)); 
-						//System.out.print(a);
 						
-						if(a == food.number) /**insert food*/
+						if(a == food.number) /*insert food*/
 							{
 								matrix[i][h] = " F ";
 							}
-						else /**insert white space*/
+						else /*insert white space*/
 							{
 								matrix[i][h] = "   ";
 							}
@@ -57,13 +56,7 @@ public class Matrix {
 		return matrix;
 	}
 
-		public void NewFood()
-		{
-			while(TestSnake(food.d1,food.d0))
-			{
-			food = new Food();
-			}	
-		}
+
 		public void SnakeToMatrix()
 		{
 			temp = snake.first;
@@ -108,7 +101,8 @@ public class Matrix {
 					   matrix[row+x][kolom+y].equals(temp.model))
 			{
 				print();
-				System.out.println("   GAME  OVER   ");
+				System.out.println("   	 GAME  OVER   ");
+				System.exit(0);
 				return true;
 			}
 			else return false;
@@ -128,11 +122,12 @@ public class Matrix {
 			}
 			SnakeToMatrix();
 		}
-		public void task(int x, int y)
+		public void task(int x, int y) /*major methode*/
 		{
 			temp = snake.first;
 			row = temp.row;
 			kolom = temp.kolom;
+			
 			if(!GameOver(x,y))
 			{
 				if(matrix[row+x][kolom+y].equals(" F "))
@@ -168,22 +163,20 @@ public class Matrix {
 				}
 		   }
 		}
-		public boolean TestSnake(int row, int kolom)
+		public void NewFood()
 		{
 			Node temp = snake.first;
-			Boolean result = false;
+			
 			while(temp != null)
 			{
-				if(temp.row == row && temp.kolom == kolom)
+				if(temp.row == food.d1 && temp.kolom == food.d0)
 				{
-					result = true;
+					food.food();;
 				}
 				else 
 				{
 					temp = temp.next;
-					result = false;
 				}
 			}
-			return result;
 		}
 }

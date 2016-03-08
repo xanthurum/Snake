@@ -19,12 +19,12 @@ public class Food
 			
 			if((d0 == 0)||(d0 == 9)||(d1 == 0)||(d1 == 9)||
 				(d1 == 1 && (d0 == 1||d0 == 2||d0 == 3)))
-				/**exclude numbers being side numbers*/
+				/*exclude numbers being side numbers*/
 			{
 				food();
 			}
 			else
-				/**list the random numbers*/
+				/*save the random number*/
 			{
 				number = k;
 			}
